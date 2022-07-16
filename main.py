@@ -10,13 +10,13 @@ class MyFileExplorer:
         pass
 
     def get_file_attr(self, filename: str) -> Dict:
-        id = os.stat(filename).st_uid[0],
-        name = filename[0],
-        tamanho = os.path.getsize(filename)[0],
-        data_criacao = date_format(os.path.getctime(filename))[0],
+        id = os.stat(filename).st_uid,
+        name = filename,
+        tamanho = os.path.getsize(filename),
+        data_criacao = date_format(os.path.getctime(filename)),
         data_mod = date_format(os.path.getmtime(filename))
 
-        return f"{id} {name} {tamanho} {data_criacao} {data_mod}"
+        return f"{id[0]} {name[0]} {tamanho[0]} {data_criacao[0]} {data_mod}"
 
     def list_items_path(self):
         items = os.listdir(self.get_path_current_dir())
