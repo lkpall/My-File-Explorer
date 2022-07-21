@@ -7,7 +7,7 @@ from utils import date_format
 
 class MyFileExplorer:
     def __init__(self):
-        pass
+        self.alocacao = []
 
     def get_file_attr(self, filename: str) -> Dict:
         id = os.stat(filename).st_uid,
@@ -111,6 +111,32 @@ class MyFileExplorer:
                 print(f.readlines())
         else:
             print("Arquivo inexistente!")
+
+    def criar_contigua(self, filename, loc):
+        if loc == "contigua":
+            with open(filename, "r") as f:
+                conteudo = (f.readlines())[0]
+                j = 0
+                for i in range(0, 100):
+                    letras = conteudo[i:(j+3)]
+                    self.alocacao.append(letras)
+                    j += i+3
+            
+            return self.alocacao
+
+    def abrir(self, filename, alocacao="contigua"):
+        if alocacao == "contigua":
+            return self.alocacao
+
+    def ler(self, filename, alocacao):
+        alocacao_temp = self.criar_contigua("renata.txt")
+        conteudo = ""
+        if alocacao == "contigua":
+            for i in range(0, 100):
+                letras = alocacao_temp[i]
+                conteudo += letras
+            
+            return conteudo
 
 
 mfe = MyFileExplorer()
